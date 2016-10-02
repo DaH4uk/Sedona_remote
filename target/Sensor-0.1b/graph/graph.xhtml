@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<f:view>
+    <ui:include src="/WEB-INF/views/tags/template.xhtml"/>
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row" style="z-index: 1;">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Управление температурой подачи</h1>
+                    <p:breadCrumb>
+                        <p:menuitem value="Главная" url="/index"/>
+                        <p:menuitem value="Управление температурой подачи" url="/graph" disabled="true"/>
+                    </p:breadCrumb>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="col-lg-12">
+                <p/>
+                <p:chart type="line" model="#{graphBean.lineModel}" style="height:300px"/>
+
+                <p/>
+                <h:form id="form">
+                    <p:growl id="msgs" showDetail="true"/>
+
+                    <p:dataTable id="cars1" var="car" value="#{graphBean.parameters}" editable="true"
+                                 style="margin-bottom:20px">
+                        <f:facet name="header">
+                            Изменение температуры подачи
+                        </f:facet>
+
+                        <p:ajax event="rowEdit" listener="#{graphBean.onRowEdit}" update=":form:msgs"/>
+                        <p:ajax event="rowEditCancel" listener="#{graphBean.onRowCancel}" update=":form:msgs"/>
+
+                        <p:column headerText="Температура наружного воздуха">
+                            <h:outputText value="#{car.parameterName}" />
+                        </p:column>
+
+                        <p:column headerText="Температура подачи">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{car.parameterValue}"/></f:facet>
+                                <f:facet name="input"><p:inputText value="#{car.parameterValue}" style="width:100%" label="Температура подачи"/></f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column style="width:32px">
+                            <p:rowEditor/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+
+            </div>
+        </div>
+    </div>
+
+
+</f:view>
+</html>

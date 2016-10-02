@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+	   http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	   http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- context:component-scan This tag will scan @Component, @Repository, @Service, @Controller
+         and also resolves @Autowired and @Qualifier -->
+    <context:component-scan base-package="ru.consort.sensor" />
+
+    <!-- ViewResolver bean config for mapping strings to jsp views -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- Example: a logical view name of 'showMessage' is mapped to '/WEB-INF/jsp/showMessage.jsp' -->
+        <property name="order" value="1" />
+        <property name="prefix" value="/" />
+
+    </bean>
+
+
+    <!--<bean class="ru.consort.sensor.Services.InfoService">-->
+        <!--<property name="cbmsUrl" value="http://85.26.195.142:8080/"/>-->
+    <!--</bean>-->
+    <!--mapping -->
+    <mvc:view-controller path="/index" view-name="/WEB-INF/views/index.jsp"/>
+    <!--<mvc:view-controller path="/scheme" view-name="/scheme/scheme.xhtml"/>-->
+    <mvc:view-controller path="/login" view-name="/login.xhtml"/>
+    <mvc:view-controller path="/info" view-name="/info/info.xhtml"/>
+    <mvc:view-controller path="/temperature" view-name="/temperature/temperature.xhtml"/>
+    <mvc:view-controller path="/lars" view-name="/temperature/lars.xhtml"/>
+    <mvc:view-controller path="/graph" view-name="/graph/graph.xhtml"/>
+
+
+
+
+</beans>

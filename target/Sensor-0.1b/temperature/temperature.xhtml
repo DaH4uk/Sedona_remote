@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<f:view>
+    <ui:include src="/WEB-INF/views/tags/template.xhtml"/>
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row" style="z-index: 1;">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Управление системой</h1>
+                    <p:breadCrumb>
+                        <p:menuitem value="Главная" url="/index"/>
+                        <p:menuitem value="Управление системой" url="/temperature" disabled="true"/>
+                    </p:breadCrumb>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="col-lg-12">
+                <p/>
+
+                    <p:fieldset legend="Желаемая комнатная температура днем" style="width: 330px">
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:form style="margin-left:40px;">
+                                <p:growl autoUpdate="true"/>
+
+                                <h4 style="margin-top:0">Выберите температуру</h4>
+                                <div class="knob-container ui-corner-all">
+                                    <p:knob id="knob" foregroundColor="#0b62a4" value="#{temperatureBean.dayTemp}"
+                                            min="17" max="27">
+                                    </p:knob>
+                                </div>
+
+                                <p/>
+
+                                <p/>
+                                <div style="margin-left:50px; margin-right:auto;">
+                                    <p:commandButton value="Готово" icon="ui-icon-check"
+                                                     actionListener="#{temperatureBean.setDayTempValue}"/>
+                                </div>
+
+                            </h:form>
+                        </h:panelGrid>
+                    </p:fieldset>
+
+                    <p:fieldset legend="Желаемая комнатная температура ночью" style="width: 330px;" >
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:form style="margin-left:40px;">
+
+                                <h4 style="margin-top:0">Выберите температуру</h4>
+                                <div class="knob-container ui-corner-all">
+                                    <p:knob id="knob2" foregroundColor="#0b62a4" value="#{temperatureBean.nightTemp}"
+                                            min="17" max="27">
+                                    </p:knob>
+                                </div>
+
+                                <p/>
+
+                                <p/>
+                                <div style="margin-left:50px; margin-right:auto;">
+                                    <p:commandButton value="Готово" icon="ui-icon-check"
+                                                     actionListener="#{temperatureBean.setNightTempValue}"/>
+                                </div>
+
+                            </h:form>
+                        </h:panelGrid>
+                    </p:fieldset>
+
+
+            </div>
+        </div>
+    </div>
+
+</f:view>
+</html>

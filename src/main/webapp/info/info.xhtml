@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<f:view>
+    <ui:include src="/WEB-INF/views/tags/template.xhtml"/>
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row" style="z-index: 1;">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Информация о системе</h1>
+                    <p:breadCrumb>
+                        <p:menuitem value="Главная" url="/index"/>
+                        <p:menuitem value="Информация о системе" url="/info" disabled="true"/>
+                    </p:breadCrumb>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="col-lg-12">
+                <p/>
+                <p:dataTable var="info" value="#{infoBean.parameters}">
+                    <p:column headerText="Название">
+                        <h:outputText value="#{info.parameterName}" />
+                    </p:column>
+
+                    <p:column headerText="Значение">
+                        <h:outputText value="#{info.parameterValue}" />
+                    </p:column>
+
+                </p:dataTable>
+
+            </div>
+        </div>
+    </div>
+
+</f:view>
+</html>
