@@ -20,21 +20,27 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by DaH4uk on 04.08.2016.
+ * Автор: Туров Данил
+ * Дата создания: 04.08.2016.
+ * Содержит реализацию метода, доступа к
+ * данным для InfoBean
+ * Проект: "Модуль локальной автоматизации".
+ * Консорт.
  */
 @ManagedBean(name = "infoService")
 @ApplicationScoped
 public class InfoService {
-
     private final static String[] parameterNames;
     private static final ClientConfig config = new DefaultClientConfig();
     private static final Client client = Client.create(config);
-
-    public static String cbmsUrl = "http://85.26.195.142:8080/";
-
-
+    //TODO: Вынести в конфиг
+    public static String cbmsUrl = "http://127.0.0.1/";
     private static final List<String> urls = new ArrayList<>();
 
+    /**
+     * Ининциализация статических полей
+     * и присвоение им имен.
+     */
     static {
         parameterNames = new String[13];
         parameterNames[0] = "Sensor 1 - Tемпература наружного воздуха";
@@ -51,7 +57,6 @@ public class InfoService {
         parameterNames[11] = "Комнатная температура - контур 2";
         parameterNames[12] = "Tемпература наружного воздуха";
 
-
         urls.add(0,"H1/");
         urls.add(1,"H3/");
         urls.add(2,"H5/");
@@ -67,6 +72,13 @@ public class InfoService {
         urls.add(12,"H25/");
     }
 
+    /**
+     * Скрывает реализацию доступа к данным.
+     * открывает connection, авторизуется,
+     * получает json для каждого поля (10 попыток)
+     * и помещает данные в list.
+     * @return список объектов, где содержатся значения всех выбранных полей.
+     */
     public List<Parameter> createParameters() {
         WebResource service = client.resource(UriBuilder.fromUri(cbmsUrl).build());
         List<Parameter> list = new ArrayList<Parameter>();
@@ -80,7 +92,7 @@ public class InfoService {
             while (json == "" && count < 10){
                 json = service.path("obixj").path("app/drivers/modbus/remote/rtu1/slave1/points/AO/" +url+ "in16/").accept(MediaType.APPLICATION_JSON).get(String.class);
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(200);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

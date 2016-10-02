@@ -21,7 +21,12 @@ import javax.servlet.ServletResponse;
 import java.io.IOException;
 
 /**
- * Created by turov on 25.08.2016.
+ * Автор: Туров Данил
+ * Дата создания: 25.08.2016.
+ * Содержит реализацию методов
+ * управления страницей /login.
+ * Проект: "Модуль локальной автоматизации".
+ * Консорт.
  */
 @ManagedBean(name = "loginBean")
 @SessionScoped
@@ -31,10 +36,11 @@ public class LoginBean {
     private String password = "";
 
     public void doLogin() throws IOException {
-        System.out.println("qq");
         if (login.equalsIgnoreCase("lukperm1") && password.equalsIgnoreCase("lkp1vdl")){
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("authorized", true);
             FacesContext.getCurrentInstance().getExternalContext().redirect("/temperature");
         } else {
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("authorized", false);
             FacesContext.getCurrentInstance().getExternalContext().redirect("/NO");
         }
 

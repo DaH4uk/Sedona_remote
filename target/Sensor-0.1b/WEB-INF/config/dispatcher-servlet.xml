@@ -28,13 +28,13 @@
         <!--<property name="cbmsUrl" value="http://85.26.195.142:8080/"/>-->
     <!--</bean>-->
     <!--mapping -->
-    <mvc:view-controller path="/index" view-name="/WEB-INF/views/index.jsp"/>
+    <!--<mvc:view-controller path="/index" view-name="/WEB-INF/views/index.jsp"/>-->
     <!--<mvc:view-controller path="/scheme" view-name="/scheme/scheme.xhtml"/>-->
     <mvc:view-controller path="/login" view-name="/login.xhtml"/>
     <mvc:view-controller path="/info" view-name="/info/info.xhtml"/>
     <mvc:view-controller path="/temperature" view-name="/temperature/temperature.xhtml"/>
     <mvc:view-controller path="/lars" view-name="/temperature/lars.xhtml"/>
-    <mvc:view-controller path="/graph" view-name="/graph/graph.xhtml"/>
+    <!--<mvc:view-controller path="/graph" view-name="/graph/graph.xhtml"/>-->
 
 
 
